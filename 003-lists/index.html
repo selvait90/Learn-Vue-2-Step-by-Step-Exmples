@@ -1,0 +1,34 @@
+<!DOCTYPE html></!DOCTYPE html>
+<html>
+<head>
+	<title>003 LISTS</title>
+</head>
+<body>
+	<div id="root">
+		<ul>
+			<li v-for="name in names"> {{name}}</li>
+		</ul>
+		<input type="text" id="input">
+		<button id="button">Add Name</button>
+	</div>
+	<script type="text/javascript" src="../js/vue.js"></script>
+
+	<script type="text/javascript">
+		
+		var app = new Vue({
+			el: '#root',
+			data: {
+				names: ['Ram', 'Kans', 'Selva']
+			},
+			mounted() {
+				document.getElementById('button').addEventListener('click', function() {
+					var newname = document.getElementById('input')
+					app.names.push(newname.value)
+					newname.value = ''
+				})
+			}
+
+		})
+	</script>
+</body>
+</html>
