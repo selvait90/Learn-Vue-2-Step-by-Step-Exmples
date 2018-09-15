@@ -9,6 +9,13 @@
 	v-for
 	v-text
 	v-on:click | @click
+	v-on:click="addName" | @click="addName"
+	v-on:keyup.enter | @keyup.enter
+	v-bind:title | :title
+	v-bind:class | :class
+	v-bind:class="className" | :class="className"
+	v-bind:class="{'color-red' : isColorRed}" | :class="{'color-red' : isColorRed}"
+	v-bind:disabled="isDisabled" | :disabled="isDisabled"
 
 * Vue Structure
 
@@ -25,6 +32,7 @@
 		}
 	
 		mounted() {
+			// executed earlier
 		}
 
 	})

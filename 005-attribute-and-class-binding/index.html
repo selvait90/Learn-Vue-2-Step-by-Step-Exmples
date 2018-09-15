@@ -1,0 +1,62 @@
+<!DOCTYPE html></!DOCTYPE html>
+<html>
+<head>
+	<title>005 ATTRIBUTE AND CLASS BINDING</title>
+	<style type="text/css">
+		.color-red {
+			color: red;
+		}
+		.color-green {
+			color: green;
+		}
+		.is-loading {
+			background-color: blue;
+			color: white;
+			font-weight: bold;
+		}
+
+	</style>
+</head>
+<body>
+	<div id="root">
+		<button :title="title">Hover Me</button>
+
+		<p :class="className">Red Color Style</p>
+
+		<p :class="{ 'color-green' : isBlueSet }">Success Color set by condition</p>
+
+		<button :class="{ 'is-loading' : isToggle }" @click="toggleClass">Toggle class</button><br /><br />
+
+		<button :disabled="isDisabled" @click="disableMe">Disble Me</button>
+
+	</div>
+	<script type="text/javascript" src="../js/vue.js"></script>
+
+	<script type="text/javascript">
+		
+		var app = new Vue({
+			el: '#root',
+			data: {
+				title: 'title set from javascript',
+				className: 'color-red',
+				isBlueSet: false,
+				isToggle: false,
+				isDisabled: false
+			},
+			methods: {
+				toggleClass: function() {
+					this.isToggle = !this.isToggle
+				},
+				disableMe: function() {
+					this.isDisabled = true
+				}
+			},
+			mounted() {
+				this.isBlueSet = true
+			}
+
+
+		})
+	</script>
+</body>
+</html>
