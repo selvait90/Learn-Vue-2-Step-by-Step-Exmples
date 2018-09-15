@@ -25,6 +25,11 @@
 			names: ['Ram', 'Kans', 'Selva']
 		},
 
+		computed: {
+			reverseMessage() {
+			}
+		}
+
 		methods: {
 			addName: function() {
 
