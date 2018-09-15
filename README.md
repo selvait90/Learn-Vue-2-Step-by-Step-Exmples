@@ -16,6 +16,9 @@
 	v-bind:class="className" | :class="className"
 	v-bind:class="{'color-red' : isColorRed}" | :class="{'color-red' : isColorRed}"
 	v-bind:disabled="isDisabled" | :disabled="isDisabled"
+	v-show
+	v-if
+
 
 * Vue Structure
 
@@ -61,3 +64,27 @@
 	Vue.component('task', {
 		template: '<li><slot></slot></li>'
 	});
+
+
+	<message title="Component Title 1" body="Body of the Component 1"></message>
+	Vue.component('message', {
+		props: ['title', 'body'],
+		template: `
+			<div class="alert alert-success" role="alert" v-show="isVisible">
+				<h4 class="alert-heading">{{title}} <button @click="hideModal">X</button></h4>
+				<p>{{body}}</p>
+			</div>
+		`,
+		data() {
+			return {
+				isVisible : true
+			}
+		},
+		methods: {
+			hideModal: function() {
+				this.isVisible = false;
+			}
+		}
+
+	});
+
