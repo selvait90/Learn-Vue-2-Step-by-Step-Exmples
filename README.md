@@ -43,6 +43,10 @@
 			// executed earlier
 		}
 
+		created() {
+			this.tabs = this.$children;
+		}
+
 	})
 
 
@@ -93,3 +97,5 @@
 	<button type="button" class="btn btn-secondary" @click="$emit('close')">Custom Close</button>
 
 	<modal title="Component Title 1" body="Body of the Component 1" @close="closeModal"></modal>
+
+
