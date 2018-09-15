@@ -1,0 +1,60 @@
+<!DOCTYPE html></!DOCTYPE html>
+<html>
+<head>
+	<title>006 ToDo List</title>
+	<style type="text/css">
+		.task-list {
+			list-style: none;
+		}
+	</style>
+</head>
+<body>
+	<div id="root">
+
+		<h2>Active Tasks</h2>
+		<ul>
+			<li :class="taskStyle" v-for="task in incompleteTasks">
+				<input type="checkbox" v-model="task.completed"> {{task.description}}
+			</li>
+		</ul>
+
+		<h2>Completed Tasks</h2>
+		<ul>
+			<li :class="taskStyle" v-for="task in tasks" v-if="task.completed">
+				<input type="checkbox" v-model="task.completed"> {{task.description}}
+			</li>
+		</ul>
+
+
+	</div>
+	<script type="text/javascript" src="../js/vue.js"></script>
+
+	<script type="text/javascript">
+		
+		new Vue({
+			el: '#root',
+			data: {
+				message: 'Hello Vue',
+				tasks: [
+					{description: 'Task One', completed: true},
+					{description: 'Task Two', completed: false},
+					{description: 'Task Three', completed: false},
+					{description: 'Task Four', completed: true},
+					{description: 'Task Four', completed: false}
+				],
+				taskStyle: 'task-list'
+			},
+			computed: {
+				reversedMessage() {
+					return this.message.split('').reverse().join('')
+				},
+				incompleteTasks() {
+					return this.tasks.filter(function(task) {
+						return !task.completed;
+					})
+				}
+			}
+		})
+	</script>
+</body>
+</html>
