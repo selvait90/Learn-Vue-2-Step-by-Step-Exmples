@@ -87,6 +87,8 @@
 		methods: {
 			hideModal: function() {
 				this.isVisible = false;
+				this.$emit('functionName', data)
+				this.$on('functionName', callback)
 			}
 		}
 
@@ -95,7 +97,28 @@
 
 * emit event - component
 	<button type="button" class="btn btn-secondary" @click="$emit('close')">Custom Close</button>
-
 	<modal title="Component Title 1" body="Body of the Component 1" @close="closeModal"></modal>
 
+
+* Custom Event Dispatcher
+
+	function EventClass() {
+		this.vue = new Vue();
+	}
+
+	EventClass.prototype.fire = function(event, data = null) {
+		this.vue.$emit(event, data )
+	}
+
+	EventClass.prototype.listen = function(event, callback) {
+		this.vue.$on(event, callback)
+	}
+
+	window.Event = new EventClass()
+
+
+	Event.fire('applied', 'CodeXCustomEventDispatcher')
+	Event.listen('applied', function(value) {
+		alert("Coupen Applied : " + value)
+	})
 
