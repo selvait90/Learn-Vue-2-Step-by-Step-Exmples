@@ -1,0 +1,14 @@
+<!DOCTYPE html></!DOCTYPE html>
+<html>
+<head>
+	<title>012 COMPONENT COMMUNICATION 1 - CUSTOM EVENTS</title>
+</head>
+<body>
+	<div id="root">
+		<coupen @applied="notifyApplied"></coupen>
+		<p v-if="isApplied">Your coupen code : {{coupenCode}} is applied</p>
+	</div>
+	<script type="text/javascript" src="../js/vue.js"></script>
+	<script type="text/javascript" src="main.js"></script>
+</body>
+</html>
