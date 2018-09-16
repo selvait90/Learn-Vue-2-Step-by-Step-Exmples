@@ -49,7 +49,7 @@
 
 	})
 
-* Slots
+* Slots and Named Slots
 	template: `
 		<slot name="header"></slot>  
 		<slot></slot>
@@ -103,6 +103,8 @@
 
 	});
 
+
+	- inline-template
 
 * emit event - component
 	<button type="button" class="btn btn-secondary" @click="$emit('close')">Custom Close</button>
