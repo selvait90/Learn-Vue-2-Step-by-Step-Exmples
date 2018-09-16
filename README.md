@@ -49,6 +49,15 @@
 
 	})
 
+* Slots
+	template: `
+		<slot name="header"></slot>  
+		<slot></slot>
+	`
+	<component>
+		<template slot="header">Content to header slot</template>
+		Content to default slot
+	</component>
 
 * Vue Component
 	Vue.component('task-list', {

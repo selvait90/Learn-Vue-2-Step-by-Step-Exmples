@@ -1,0 +1,33 @@
+<!DOCTYPE html></!DOCTYPE html>
+<html>
+<head>
+	<title>014 NAMED SLOTS IN A NUTSHELL</title>
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+</head>
+<body>
+	<div id="root">
+		<modal>
+			<template slot="title"> Named Slot</template>
+			Content of named slots
+			<template slot="footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        	<button type="button" class="btn btn-primary">Ok</button>
+			</template>
+		</modal>
+
+	</div>
+
+
+	<!-- Button trigger modal -->
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+	  Launch demo modal
+	</button>
+
+	<script type="text/javascript" src="../js/jquery-3.3.1.slim.min.js"></script>
+	<script type="text/javascript" src="../js/popper.min.js"></script>
+	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js/vue.js"></script>
+	<script type="text/javascript" src="main.js"></script>
+	
+</body>
+</html>
