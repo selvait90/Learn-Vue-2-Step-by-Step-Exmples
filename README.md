@@ -172,3 +172,10 @@
 	# Lints and fixes files
 	$ npm run lint
 
+
+17. Hot Module Replacement FREE
+
+	Hot modules features to update template while maintaining the state of JavaScript variables
+
+	<!-- Add "scoped" attribute to limit CSS to this component only -->
+	<style scoped>
