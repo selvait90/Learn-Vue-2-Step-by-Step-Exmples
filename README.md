@@ -179,3 +179,18 @@
 
 	<!-- Add "scoped" attribute to limit CSS to this component only -->
 	<style scoped>
+	</style>
+
+18. Vue Ajax Requests With Axios
+
+	package.json
+
+	  "dependencies": {
+	    "vue": "^2.5.17",
+	    "axios": "^0.18.0"
+	  },
+
+	$ npm install axios
+
+	https://github.com/axios/axios
+	
