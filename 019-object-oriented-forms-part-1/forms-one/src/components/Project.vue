@@ -39,7 +39,6 @@ class Errors {
   }
 
   get(field) {
-    console.log("get : " + field)
     if(this.errors[field]) {
       return field + ' ' + this.errors[field].join(',')
     }
@@ -54,12 +53,10 @@ class Errors {
   }
 
   record(data) {
-    console.log("record : " + data)
     this.errors = data
   }
 
   clear(field) {
-    console.log("clear : " + field)
     if(this.errors[field]) {
       delete this.errors[field]
     }
@@ -79,8 +76,6 @@ class Form {
   }
 
   loadData() {
-    console.log("loadData " + JSON.stringify(this.originalData))
-    console.log("loadData this " + this.name + this.description)
     for(let field in this.originalData) {
       if(this)
       this.originalData[field] = this[field]
@@ -90,7 +85,6 @@ class Form {
 
   reset() {
     for(let field in this.originalData) {
-      console.log("reset " + field)
       this[field] = ''
     }    
   }
@@ -99,15 +93,27 @@ class Form {
     let data = Object.assign({}, this)
     delete data.originalData
     delete data.errors
-    console.log("getData " + JSON.stringify(data))
     return data
+  }
+
+  post(url) {
+    return this.submit('post', url)
   }
 
   submit(requestType, url) {
     console.log("data : " + JSON.stringify(this.loadData()))
-    axios[requestType](url, this.loadData())
-      .then(this.onSuccess.bind(this))
-      .catch(this.onFail.bind(this))
+    return new Promise((resolve, reject) => {
+      axios[requestType](url, this.loadData())
+        .then(response => {
+          this.onSuccess(response.data)
+          resolve(response.data)
+        })
+        .catch(error => {
+          this.onFail(error.response.data)
+          reject(error.response.data)
+        })
+
+    }) 
   }
 
   onSuccess(response) {
@@ -115,10 +121,10 @@ class Form {
     this.reset()
   }
 
-  onFail(error) {
+  onFail(errors) {
     // // {"name":["can't be blank"],"description":["can't be blank"]}
-    console.log("create failure : " + JSON.stringify(error.response.data))
-    this.errors.record(error.response.data)
+    console.log("create failure : " + JSON.stringify(errors))
+    this.errors.record(errors)
   }
 
 }
@@ -141,8 +147,14 @@ export default {
   methods: {
 
     createProject() {
-      this.form.submit('post', 'http://localhost:3000/projects')
-      this.loadProjects()
+      var self = this
+      this.form.post('http://localhost:3000/projects')
+      .then(data => {
+        console.log("resolve : " + data)
+        self.loadProjects()
+      })
+      .catch(errors => console.log("reject" + errors))
+      
     },
 
     loadProjects() {

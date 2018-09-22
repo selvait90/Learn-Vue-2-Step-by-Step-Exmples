@@ -246,9 +246,14 @@
 
 
 
-20. Object-Oriented Forms: Part 1
+20. Object-Oriented Forms: Part 2
 
 	API - Rails Application in API mode
 	Form - Form class used
 
 	* Follow Object Oriented methods to process form data (Class Form ())
+
+21. Object-Oriented Forms: Part 3
+	Refactoring
+
+	
