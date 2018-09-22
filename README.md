@@ -190,7 +190,57 @@
 	    "axios": "^0.18.0"
 	  },
 
-	$ npm install axios
+	- Include axios into package.json by specifying --save option
+	$ npm install axios --save
 
 	https://github.com/axios/axios
-	
+	main.js
+		import axios from 'axios'
+		window.axios = require('axios');
+
+
+19. Object-Oriented Forms: Part 1
+
+	API - Rails Application in API mode
+	Form - Used bootstrap		
+
+	* Follow Object Oriented methods to handle error messages (Class Error ())
+
+	$ rails new form-api --api
+	$ cd form-api
+	$ bundle install
+	$ bin/rake db:setup
+
+	bin/rails g scaffold project name description
+
+	no 'access-control-allow-origin' header is present on the requested resource
+	- Gemfile
+		# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
+		gem 'rack-cors'
+
+	- cors.rb
+		https://til.hashrocket.com/posts/4d7f12b213-rails-5-api-and-cors
+		origins 'localhost:8080'
+
+	Uncaught (in promise) TypeError: Cannot read property 'protocol' of undefined
+		https://github.com/axios/axios/issues/118#issuecomment-313815318
+		import axios from 'axios'
+		And use Axios normally without using Vue.use(axios)
+
+	Uncaught TypeError: self.postMessage is not a function
+		https://github.com/webpack/webpack-dev-server/issues/792#issuecomment-341110726
+		var self = this in axios usage
+
+
+
+	$event.target.name -> current dom
+	object.hasOwnProperty(field)
+
+	Unexpected console statement (no-console) at
+	https://eslint.org/docs/rules/no-console
+	package.json
+	  "eslintConfig": {
+	    "rules": {
+	      "no-console": "off"
+	    },
+
