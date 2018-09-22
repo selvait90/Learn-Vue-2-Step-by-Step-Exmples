@@ -244,3 +244,11 @@
 	      "no-console": "off"
 	    },
 
+
+
+20. Object-Oriented Forms: Part 1
+
+	API - Rails Application in API mode
+	Form - Form class used
+
+	* Follow Object Oriented methods to process form data (Class Form ())

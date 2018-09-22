@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import Vue from 'vue'  
 import Project from './components/Project.vue'
 
 

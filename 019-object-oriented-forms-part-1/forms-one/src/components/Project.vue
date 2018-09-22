@@ -1,20 +1,20 @@
 <template>
   <div class="hello">
-    <form @keydown="errors.clear($event.target.name)">
+    <form @keydown="form.errors.clear($event.target.name)">
       <div class="form-group">
         <label for="projectName">Project Name</label>
-        <input type="text" class="form-control" name="name" id="projectName" placeholder="Project Name" v-model="name">
+        <input type="text" class="form-control" name="name" id="projectName" placeholder="Project Name" v-model="form.name">
         <!-- input type="text" class="form-control" id="projectName" placeholder="Project Name" v-model="name" @keydown="errors.clear('name')"-->        
         <!--div class="error-info" v-if="errors.hasOwnProperty('name')"> Description - {{errors.name.join(',')}}</div-->
-        <div class="error-info" v-if="errors.has('name')"> {{errors.get('name')}}</div>
+        <div class="error-info" v-if="form.errors.has('name')"> {{form.errors.get('name')}}</div>
       </div>
       <div class="form-group">
         <label for="projectDescription">Project Description</label>
-        <input type="text" class="form-control" name="description" id="projectDescription" placeholder="Project Description" v-model="description">
+        <input type="text" class="form-control" name="description" id="projectDescription" placeholder="Project Description" v-model="form.description">
         <!--div class="error-info" v-if="errors.hasOwnProperty('description')"> Description - {{errors.description.join(',')}}</div-->
-        <div class="error-info" v-if="errors.has('description')"> {{errors.get('description')}}</div>
+        <div class="error-info" v-if="form.errors.has('description')"> {{form.errors.get('description')}}</div>
       </div>
-      <button @click.prevent="createProject" class="btn btn-primary" :disabled="errors.any()">Create</button>
+      <button @click.prevent="createProject" class="btn btn-primary" :disabled="form.errors.any()">Create</button>
     </form>
 
     <div class="projects-list">
@@ -27,6 +27,7 @@
     </div>
   </div>
 </template>
+
 
 <script>
 import axios from 'axios'
@@ -66,6 +67,62 @@ class Errors {
 
 }
 
+class Form {
+  constructor(data) {
+    this.originalData = data
+ 
+    for (let field in data) {
+      this[field] = data[field];
+    }
+
+    this.errors = new Errors()
+  }
+
+  loadData() {
+    console.log("loadData " + JSON.stringify(this.originalData))
+    console.log("loadData this " + this.name + this.description)
+    for(let field in this.originalData) {
+      if(this)
+      this.originalData[field] = this[field]
+    }
+    return this.originalData
+  }
+
+  reset() {
+    for(let field in this.originalData) {
+      console.log("reset " + field)
+      this[field] = ''
+    }    
+  }
+
+  getData() {
+    let data = Object.assign({}, this)
+    delete data.originalData
+    delete data.errors
+    console.log("getData " + JSON.stringify(data))
+    return data
+  }
+
+  submit(requestType, url) {
+    console.log("data : " + JSON.stringify(this.loadData()))
+    axios[requestType](url, this.loadData())
+      .then(this.onSuccess.bind(this))
+      .catch(this.onFail.bind(this))
+  }
+
+  onSuccess(response) {
+    console.log("create success" + response.data)
+    this.reset()
+  }
+
+  onFail(error) {
+    // // {"name":["can't be blank"],"description":["can't be blank"]}
+    console.log("create failure : " + JSON.stringify(error.response.data))
+    this.errors.record(error.response.data)
+  }
+
+}
+
 export default {
   name: 'Project',
   props: {
@@ -75,37 +132,38 @@ export default {
     // $vm0.$children[0].$data
     return {
       projects: [],
-      name: '',
-      description: '',
-      errors: new Errors()
+      form: new Form({
+        name: '',
+        description: '',
+      })      
     }
   },
   methods: {
+
     createProject() {
+      this.form.submit('post', 'http://localhost:3000/projects')
+      this.loadProjects()
+    },
+
+    loadProjects() {
       var self = this
-      console.log("Form Data" + this.name)
-      axios.post('http://localhost:3000/projects', {'name': this.name, 'description': this.description})
+      axios.get('http://localhost:3000/projects')
       .then(function(response) {
-        console.log("create success" + response.data)
-      })
-      .catch(function(error) {
-        // {"name":["can't be blank"],"description":["can't be blank"]}        
-        console.log("create failure : " + JSON.stringify(error.response.data))
-        self.errors.record(error.response.data)
+        self.projects = response.data
+        console.log(response.data)
       })
     }
+
   },
+
+
   mounted() {
-    var self = this
-    axios.get('http://localhost:3000/projects')
-    .then(function(response) {
-      self.projects = response.data
-      console.log(response.data)
-    })
+    this.loadProjects()
   }
 
 }
 </script>
+
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
