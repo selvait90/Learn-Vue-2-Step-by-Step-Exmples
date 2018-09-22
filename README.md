@@ -133,3 +133,42 @@
 		alert("Coupen Applied : " + value)
 	})
 
+
+
+16. Webpack and vue-cli FREE
+	https://vue-loader.vuejs.org/
+	vue-loader is a loader for webpack that allows you to author Vue components in a format called Single-File Components (SFCs)
+
+	<template>
+	  <div class="example">{{ msg }}</div>
+	</template>
+
+	<script>
+	export default {
+	  data () {
+	    return {
+	      msg: 'Hello world!'
+	    }
+	  }
+	}
+	</script>
+
+	<style>
+	.example {
+	  color: red;
+	}
+	</style>
+
+
+	https://cli.vuejs.org/
+	$ sudo npm install -g @vue/cli
+	$ vue create my-app
+
+	$ cd my-app
+	$ npm run serve
+
+	- Watch out for lint messages
+
+	# Lints and fixes files
+	$ npm run lint
+
