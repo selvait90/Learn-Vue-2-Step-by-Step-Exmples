@@ -324,4 +324,10 @@
 24. Shared State 101
 	Defined generic variable outside Vue instances and access from multiple vue instances
 
+25. Custom Input Components
 
+
+26. Vue SPA Essentials: Routing
+
+	vue create vue-route-app
+	
