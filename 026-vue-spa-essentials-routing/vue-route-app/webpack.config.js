@@ -5,7 +5,7 @@ let path = require('path');
 module.exports = {
     entry: {
         app: './src/main.js',
-        vendor: ['vue']
+        vendor: ['vue', 'axios']
     },
 
     output: {

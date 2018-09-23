@@ -346,4 +346,12 @@
 	bin/rails g scaffold status user:references body
 	rails db:migrate
 	rails s
+	rails c
+	User.new(name: 'Selvakumar Arumugam', email: 'selva@mail.com').save!
+	Status.new(user_id: 1, body: 'Hello Everyone, here is the first message of steam application').save!	
+	User.new(name: 'Kannan Ponnusamy', email: 'kannan@mail.com').save!
+	Status.new(user_id: 2, body: 'hey, this rails vue application is great').save!
+	Status.new(user_id: 1, body: 'This one is a Rails and Vue Single Page App').save!
 
+
+	npm install axios --save-dev

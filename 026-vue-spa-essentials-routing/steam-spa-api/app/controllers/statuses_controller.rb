@@ -5,12 +5,12 @@ class StatusesController < ApplicationController
   def index
     @statuses = Status.all
 
-    render json: @statuses
+    render json: @statuses, include: [:user]
   end
 
   # GET /statuses/1
   def show
-    render json: @status
+    render json: @status, include: [:user]
   end
 
   # POST /statuses
