@@ -136,6 +136,7 @@
 
 
 16. Webpack and vue-cli FREE
+
 	https://vue-loader.vuejs.org/
 	vue-loader is a loader for webpack that allows you to author Vue components in a format called Single-File Components (SFCs)
 
@@ -258,6 +259,28 @@
 
 22. Webpack Config From Scratch
 
+	
+	* Start Rails server at 019
+		$ rails s
+	* Build vue components
+		$ npm run wprod
+	* Run local server
+		$ python -m SimpleHTTPServer
+	* Access application
+		localhost:8000
+
+	============================================================
+	$ vue create vue-webpack
+	$ cd vue-webpack
+	$ vi webpack.config.js
+	$ ./node_modules/.bin/webpack --mode=development
+	$ npm install webpack --save-dev
+	$ npm install webpack-cli --save-dev
+	$ npm install axios --save
+	$ npm install css-loader --save-dev
+	$ npm install vue-style-loader --save-dev
+
+
 	Vue SFC processing
 	https://vue-loader.vuejs.org/guide/#manual-configuration
 
@@ -287,16 +310,14 @@
 		}
 	* Hide modules and watcher
 		./node_modules/.bin/webpack --hide-modules --watch
-
 	ERROR in ./src/App.vue
 		Module parse failed: /Users/selva/sideprojects/vuejs/practice/022-webpack-config-from-scratch/webpack-app/src/App.vue Unexpected token (1:0)
 		You may need an appropriate loader to handle this file type.
-
 	bash-3.2$ npm install --save-dev vue-loader vue-template-compiler vue-style-loader css-loader --save-dev
 	npm install --save-dev style-loader
-
 
 	Uncaught TypeError: Cannot assign to read only property 'exports' of object '#<Object>'
 		./babel.config.js:module.exports = {
 
 		https://stackoverflow.com/questions/47720354/how-can-i-fix-webpack-related-error-cannot-assign-to-read-only-property-export
+	============================================================
