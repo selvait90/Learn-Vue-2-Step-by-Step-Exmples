@@ -213,6 +213,8 @@
 	$ bin/rake db:setup
 
 	bin/rails g scaffold project name description
+	rails db:migrate
+	rails s
 
 	no 'access-control-allow-origin' header is present on the requested resource
 	- Gemfile
@@ -334,3 +336,14 @@
 	$ npm install vue-router --save-dev
 	Failed to mount component: template or render function not defined.
 	https://github.com/vuejs/vue-router/issues/1882#issuecomment-344504483
+
+	$ rails new stream-spa-api --api
+	$ cd stream-spa-api
+	$ bundle install
+	$ bin/rake db:setup
+
+	bin/rails g scaffold user name email
+	bin/rails g scaffold status user:references body
+	rails db:migrate
+	rails s
+
