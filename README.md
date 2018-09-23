@@ -1,3 +1,10 @@
+# Learn Vue 2 Step by Step Exmples
+
+I have worked through laracasts Vue 2 learning series and codes are here. But I was little deviated from the techstack showcased in the tutorial. The backend examples were explained with help of Laravel but I used Rails and Bulma is used for CSS frame work but i choosed Bootstrap
+
+* Laravel => Rails
+* Bulma => Bootstrap
+
 * Learning Vue 2
 	https://laracasts.com/series/learn-vue-2-step-by-step
 
