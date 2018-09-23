@@ -11,8 +11,11 @@ let routes = [
 	{
 		path: '/about',
 		component: require('./components/About.vue').default
+	},
+	{
+		path: '/contact',
+		component: require('./components/Contact.vue').default
 	}
-
 ]
 
 
