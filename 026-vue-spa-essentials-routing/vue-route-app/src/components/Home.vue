@@ -10,6 +10,18 @@
         <p class="card-text">{{status.body}}</p>
       </div>
     </div>
+    <br/>
+    <form class="form-group" @submit.prevent="addStatus">
+      <label for="exampleFormControlSelect1">Comment as...</label>
+      <select class="form-control" id="exampleFormControlSelect1" v-model="userId" >
+        <option v-for="user in users" :value="user.id" :key="user.id"> {{user.name}}</option>
+      </select>
+      <label for="exampleFormControlTextarea1">Your thoughts here...</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="userBody" placeholder="Place your thoughts ere.."></textarea>
+      <br />
+      <button class="btn btn-primary">Submit</button>
+    </form>
+
   </div>
 </template>
 
@@ -23,7 +35,21 @@ export default {
   },
   data() {
     return {
-      statuses: []
+      statuses: [],
+      users: [],
+      userId : 1,
+      userBody: ""
+    }
+  },
+  methods: {
+
+    addStatus() {
+      // alert("Add Status" + this.userId + " - " + this.userBody)
+      var self = this
+      axios.post('http://localhost:3000/statuses', { 'user_id' : this.userId, 'body' : this.userBody })
+      .then(response => {
+        self.statuses.push(response.data)
+      })
     }
   },
   filters: {
@@ -41,6 +67,16 @@ export default {
     .catch(error => {
       console.log(error)
     })
+
+    axios.get('http://localhost:3000/users')
+    .then(response => {
+      console.log(response.data)
+      self.users = response.data
+    })
+    .catch(error => {
+      console.log(error)
+    })
+
   }
 }
 </script>

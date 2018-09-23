@@ -18,7 +18,7 @@ class StatusesController < ApplicationController
     @status = Status.new(status_params)
 
     if @status.save
-      render json: @status, status: :created, location: @status
+      render json: @status, status: :created, location: @status, include: [:user]
     else
       render json: @status.errors, status: :unprocessable_entity
     end
