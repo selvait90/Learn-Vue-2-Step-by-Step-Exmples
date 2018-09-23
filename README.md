@@ -256,4 +256,47 @@
 21. Object-Oriented Forms: Part 3
 	Refactoring
 
-	
+22. Webpack Config From Scratch
+
+	Vue SFC processing
+	https://vue-loader.vuejs.org/guide/#manual-configuration
+
+	Bundle & Global Access
+		npm install axios --save-dev
+		import axios from 'axios'
+		window.axios = axios // global expose
+
+
+	* Install webpack
+		npm install webpack@version --save-dev
+		+ webpack@2.7.0
+	* Config file
+		webpack.config.js
+	* Test configuration
+		./node_modules/.bin/webpack
+	* Entry Point
+		let webpack = require('webpack')
+		let path = require('path')
+		module.exports = {
+			entry: './src/assets/app.js',
+			output: {
+				path: path.resolve(__dirname, 'public/js')
+				filename: 'bundle.js'
+				publicPath: './cdnpath'
+			}
+		}
+	* Hide modules and watcher
+		./node_modules/.bin/webpack --hide-modules --watch
+
+	ERROR in ./src/App.vue
+		Module parse failed: /Users/selva/sideprojects/vuejs/practice/022-webpack-config-from-scratch/webpack-app/src/App.vue Unexpected token (1:0)
+		You may need an appropriate loader to handle this file type.
+
+	bash-3.2$ npm install --save-dev vue-loader vue-template-compiler vue-style-loader css-loader --save-dev
+	npm install --save-dev style-loader
+
+
+	Uncaught TypeError: Cannot assign to read only property 'exports' of object '#<Object>'
+		./babel.config.js:module.exports = {
+
+		https://stackoverflow.com/questions/47720354/how-can-i-fix-webpack-related-error-cannot-assign-to-read-only-property-export
