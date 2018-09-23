@@ -4,7 +4,7 @@
     <div class="card card-margin" v-for="status in statuses">
       <div class="card-header">
         <span class="card-name">{{status.user.name}} said...</span>
-        <span class="card-time">{{status.created_at}}</span>
+        <span class="card-time">{{status.created_at | ago}}</span>
       </div>
       <div class="card-body">
         <p class="card-text">{{status.body}}</p>
@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import moment from 'moment'
+
 export default {
   name: 'Home',
   props: {
@@ -22,6 +24,11 @@ export default {
   data() {
     return {
       statuses: []
+    }
+  },
+  filters: {
+    ago(date) {
+      return moment(date).fromNow()
     }
   },
   created() {
