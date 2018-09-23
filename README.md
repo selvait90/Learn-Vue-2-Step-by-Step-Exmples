@@ -321,3 +321,7 @@
 
 		https://stackoverflow.com/questions/47720354/how-can-i-fix-webpack-related-error-cannot-assign-to-read-only-property-export
 	============================================================
+24. Shared State 101
+	Defined generic variable outside Vue instances and access from multiple vue instances
+
+
