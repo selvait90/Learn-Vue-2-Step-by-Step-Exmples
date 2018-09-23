@@ -1,0 +1,22 @@
+<!DOCTYPE html></!DOCTYPE html>
+<html>
+<head>
+	<title>024 CUSTOM INPUT COMPONENTS</title>
+</head>
+<body>
+	<div id="root">
+		<p>
+			v-model : <input type="text" name="coupencode" v-model="coupen" >	
+		</p>
+		
+		<p>
+			v-bind:value & @input : <input type="text" name="coupencode" :value="coupen" @input="coupen = $event.target.value">	
+		</p>
+		<p>
+			Custom input validation : <coupen v-model="coupen" :code="coupen">
+		</p>
+	</div>
+	<script type="text/javascript" src="../js/vue.js"></script>
+	<script type="text/javascript" src="main.js"></script>
+</body>
+</html>
