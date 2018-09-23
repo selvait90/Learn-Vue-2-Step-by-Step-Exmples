@@ -329,5 +329,8 @@
 
 26. Vue SPA Essentials: Routing
 
-	vue create vue-route-app
+	$ vue create vue-route-app
 	
+	$ npm install vue-router --save-dev
+	Failed to mount component: template or render function not defined.
+	https://github.com/vuejs/vue-router/issues/1882#issuecomment-344504483
